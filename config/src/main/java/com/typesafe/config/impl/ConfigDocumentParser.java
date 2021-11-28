@@ -453,8 +453,8 @@ final class ConfigDocumentParser {
                     boolean insideEquals = false;
 
                     AbstractConfigNodeValue nextValue;
-                    if (flavor == ConfigSyntax.CONF && afterKey == Tokens.OPEN_CURLY) {
-                        // can omit the ':' or '=' before an object value
+                    if (flavor == ConfigSyntax.CONF && (afterKey == Tokens.OPEN_CURLY || afterKey == Tokens.OPEN_SQUARE)) {
+                        // can omit the ':' or '=' before an object value or array
                         nextValue = parseValue(afterKey);
                     } else {
                         if (!isKeyValueSeparatorToken(afterKey)) {
